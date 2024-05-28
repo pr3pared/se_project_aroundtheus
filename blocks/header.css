@@ -1,0 +1,14 @@
+.header {
+    width: 100%;
+    max-width: 880px;
+    max-height: 73px;
+    height: 100vh;
+    background-color: #000000;
+    border-bottom: solid 1px #545454;
+    padding: 45px 0 0;
+}
+
+.header__logo {
+    max-width: 173px;
+    max-height: 33px;
+}

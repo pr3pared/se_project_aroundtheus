@@ -1,0 +1,70 @@
+.profile {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+.profile__avatar {
+    margin: 0 30px 0 0;
+    height: 120px;
+    width: 120px;
+    background-color: #000;
+}
+
+.profile__info {
+    display: grid;
+    grid-template-areas: 
+        "name button"
+        "title .";
+    grid-template-columns: 2;
+    align-items: center;
+}
+
+.profile__name {
+    color: #fff;
+    font-size: 42px;
+    line-height: 48px;
+    font-weight: 500;
+    margin: 0 0 7px;
+    grid-area: name;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.profile__title {
+    color: #fff;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    margin: 0;
+    grid-area: title;
+}
+
+.profile__edit-button {
+     background-color: #000;
+     cursor: pointer;
+     height: 24px;
+     width: 24px;
+     border: #fff 1px solid;
+     grid-area: button;
+     align-self: center;
+     margin: 0 0 0 18px;
+}
+
+.profile__edit-button:hover {
+    opacity: 60%;
+}
+
+.profile__add-button {
+    margin-left: auto;
+    background-color: #000;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    border: #fff 1px solid;
+}
+
+.profile__add-button:hover {
+    opacity: 60%;
+}
