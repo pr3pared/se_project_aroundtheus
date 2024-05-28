@@ -1,14 +1,24 @@
 .header {
     width: 100%;
     max-width: 880px;
-    max-height: 73px;
-    height: 100vh;
     background-color: #000000;
-    border-bottom: solid 1px #545454;
-    padding: 45px 0 0;
+    border-bottom: solid 1px rgba(84,84,84,50);
+    padding: 45px 0 41px;
+    margin: 0 auto;
 }
 
 .header__logo {
-    max-width: 173px;
-    max-height: 33px;
+    width: 173px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 799px) {
+    .header {
+        padding: 28px 0 32px;
+    }
+    
+
+    .header__logo {
+        padding:0 0 0 27px;
+        width: 126px;
+    }
 }

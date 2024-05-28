@@ -7,6 +7,7 @@
     grid-template-columns: repeat(auto-fit, 282px);
     gap: 20px 17px;
     padding: 0;
+    margin: 0;
     justify-content: center;
 }
 
@@ -15,7 +16,6 @@
     flex-direction: column;
     list-style-type: none;
     max-width: 282px;
-    max-height: 361px;
 }
 
 .elements__bottom-card {
@@ -55,8 +55,21 @@
     opacity: 50%;
 }
 
-@media screen and (min-width:320px) and (max-width:799px) {
+@media screen and (min-width:602px) and (max-width:799px) {
     .elements__list {
-        justify-content: center;
+        gap: 20px 17px;
     }
 }
+
+@media screen and (min-width:320px) and (max-width:601px) {
+    .elements__list {
+        gap: 20px 0px;
+    }
+}
+
+@media screen and (min-width:320px) and (max-width:799px) {
+    .elements {
+        margin: 36px 0 0;
+    }
+}
+
