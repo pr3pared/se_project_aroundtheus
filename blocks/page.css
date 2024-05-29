@@ -3,6 +3,7 @@
     font-family: Inter, Arial, sans-serif;
     color: #fff;
     padding: 0 20px 60px 20px;
+    min-height: 100vh;
 }
 
 .page__content {

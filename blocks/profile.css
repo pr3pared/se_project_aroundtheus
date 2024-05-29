@@ -38,6 +38,9 @@
     font-weight: 400;
     margin: 0;
     grid-area: title;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .profile__edit-button {

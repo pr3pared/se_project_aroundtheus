@@ -24,7 +24,7 @@
     align-items: center;
     color: #000;
     background-color: #fff;
-    padding: 25px 29px 25px 20px;
+    padding: 25px 0px 25px 20px;
     border-radius: 0 0 10px 10px;
 }
 
@@ -46,9 +46,17 @@
 }
 
 .elements__button {
+    flex-shrink: 0;
     height: 18px;
     width: 21px;
+    padding: 0;
+    margin: 0 29px 0 0;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
+    background-image: url(../images/heart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .elements__button:hover {
