@@ -16,7 +16,7 @@
     display: grid;
     grid-template-areas: 
         "name button"
-        "title title";
+        "description description";
     align-items: center;
 }
 
@@ -33,13 +33,13 @@
     white-space: nowrap;
 }
 
-.profile__title {
+.profile__description {
     color: #fff;
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
     margin: 0;
-    grid-area: title;
+    grid-area: description;
     max-width: 375px;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -105,7 +105,7 @@
         max-width: 220px;
     }
 
-    .profile__title {
+    .profile__description {
         font-size: 14px;
         line-height: 17px;
         margin: 14px auto 0;

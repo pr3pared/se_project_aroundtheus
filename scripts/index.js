@@ -31,49 +31,61 @@ const initialCards = [
     },
 ]
 
+
+//Profile Modal Handler
+
 let editButton = document.querySelector(".profile__edit-button");
 let modal = document.querySelector(".modal");
 let modalClose = document.querySelector(".modal__close");
 let modalForm = document.querySelector(".modal__form")
 
-editButton.addEventListener("click", function(){
-    modal.classList.remove("modal_hidden");
-})
-
-modalClose.addEventListener("click", function(){
-    modal.classList.add("modal_hidden");
-})
-
 //Shows on site
 const profileName = document.querySelector(".profile__name");
-const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
 
-//New Submitted Names
-const submittedName = document.querySelector(".modal__form-name");
-const submittedTitle = document.querySelector(".modal__form-title");
+//New Submitted Names 
+const modalFormName = document.querySelector("[name = 'profile-name']");
+const modalFormDescription = document.querySelector("[name = 'profile-description']");
 
-//Profile Modal Handler
-modalForm.addEventListener("submit", modalFormSubmit);
-
-function modalFormSubmit(event) {
-    event.preventDefault();
-    profileName.textContent = submittedName.value;
-    profileTitle.textContent = submittedTitle.value;
-    modal.classList.add("modal_hidden");
+function openProfileModal () {
+    modalFormName.value = profileName.innerText;
+    modalFormDescription.value = profileDescription.innerText;
+    modal.classList.toggle("modal_hidden");
 }
+
+function closeProfileModal() {
+    modal.classList.toggle("modal_hidden");
+}
+
+function handleProfileFormSubmit(event) {
+    event.preventDefault();
+    profileName.textContent = modalFormName.value;
+    profileDescription.textContent = modalFormDescription.value;
+    closeProfileModal();
+}
+
+editButton.addEventListener("click", openProfileModal);
+modalClose.addEventListener("click", closeProfileModal);
+modalForm.addEventListener("submit", handleProfileFormSubmit);
+
+
 
 //Adding Cards
-let cardTemplate = document.querySelector("#cards-template").content;
-let elementsList = document.querySelector('.elements__list');
+function createCard(initialCards) {
+    const cardTemplate = document.querySelector("#cards-template").content;
+    const elementsList = document.querySelector('.elements__list');
 
-for (let i = 0; i < initialCards.length; i++) {
-    const addCard = cardTemplate.cloneNode(true);
-    addCard.querySelector(".elements__card-image").src = initialCards[i].link;
-    addCard.querySelector(".elements__card-image").alt = initialCards[i].alt;
-    addCard.querySelector(".elements__title").textContent = initialCards[i].name;
-    //console.log(initialCards[i]) Used for testing
-    elementsList.prepend(addCard);
+    initialCards.forEach(initialCards => {
+        const addCard = cardTemplate.cloneNode(true);
+        addCard.querySelector(".elements__card-image").src = initialCards.link;
+        addCard.querySelector(".elements__card-image").alt = initialCards.alt;
+        addCard.querySelector(".elements__title").textContent = initialCards.name;
+        console.log(initialCards);
+        elementsList.prepend(addCard);
+    });
 }
+
+createCard(initialCards);
 
 //LATER FUNCTIONALITY ADD BUTTON
 // const addButton = querySelector(".profile__add-button");
