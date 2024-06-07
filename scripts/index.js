@@ -65,7 +65,7 @@ for (let i = 0; i < initialCards.length; i++) {
     const addCard = cardTemplate.cloneNode(true);
     addCard.querySelector(".elements__card-image").src = initialCards[i].link;
     addCard.querySelector(".elements__title").textContent = initialCards[i].name;
-    console.log(initialCards[i])
+    //console.log(initialCards[i]) Used for testing
     elementsList.prepend(addCard);
 }
 
