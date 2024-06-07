@@ -1,27 +1,33 @@
 const initialCards = [
     {
         name: "Yosemite Valley",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg"
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+        alt: "Yosemite"
     },
     {
         name: "Lake Louise",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg"
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+        alt: "Lake Louise"
     },
     {
         name: "Bald Mountains",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg"
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+        alt: "Bald Mountains"
     },
     {
         name: "Latemar",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg"
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+        alt: "Latemar"
     },
     {
         name: "Vanoise National Park",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg"
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+        alt: "Vanoise"
     },
     {
         name: "Lago di Braies",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg"
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+        alt: "Lago"
     },
 ]
 
@@ -58,12 +64,12 @@ function modalFormSubmit(event) {
 
 //Adding Cards
 let cardTemplate = document.querySelector("#cards-template").content;
-let addCard = cardTemplate.querySelector('.elements__card').cloneNode(true);
 let elementsList = document.querySelector('.elements__list');
 
 for (let i = 0; i < initialCards.length; i++) {
     const addCard = cardTemplate.cloneNode(true);
     addCard.querySelector(".elements__card-image").src = initialCards[i].link;
+    addCard.querySelector(".elements__card-image").alt = initialCards[i].alt;
     addCard.querySelector(".elements__title").textContent = initialCards[i].name;
     //console.log(initialCards[i]) Used for testing
     elementsList.prepend(addCard);
