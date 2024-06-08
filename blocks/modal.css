@@ -59,7 +59,7 @@
 }
 
 .modal__input {
-    padding: 0;
+    padding: 0 0 13px 0;
     margin: 30px 0 0 0;
     border: none;
     border-bottom:1px solid rgba(0, 0, 0, 0.5);
@@ -85,7 +85,7 @@
 
     .modal__container {
         max-width: 260px;
-        padding: 22px;
+        padding: 25px 22px;
     }
 
     .modal__heading {
@@ -96,6 +96,7 @@
     .modal__button {
         font-size: 14px;
         margin: 45px 0 0 0;
+        font-weight: 400;
     }
 }
 

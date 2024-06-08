@@ -47,45 +47,48 @@ const profileDescription = document.querySelector(".profile__description");
 const modalFormName = document.querySelector("[name = 'profile-name']");
 const modalFormDescription = document.querySelector("[name = 'profile-description']");
 
-function openProfileModal () {
-    modalFormName.value = profileName.innerText;
-    modalFormDescription.value = profileDescription.innerText;
+function toggleProfileModal () {
     modal.classList.toggle("modal_hidden");
 }
 
-function closeProfileModal() {
-    modal.classList.toggle("modal_hidden");
+function openProfileModal () {
+    modalFormName.value = profileName.innerText;
+    modalFormDescription.value = profileDescription.innerText;
+    toggleProfileModal();
 }
 
 function handleProfileFormSubmit(event) {
     event.preventDefault();
     profileName.textContent = modalFormName.value;
     profileDescription.textContent = modalFormDescription.value;
-    closeProfileModal();
+    toggleProfileModal();
 }
 
 editButton.addEventListener("click", openProfileModal);
-modalClose.addEventListener("click", closeProfileModal);
+modalClose.addEventListener("click", toggleProfileModal);
 modalForm.addEventListener("submit", handleProfileFormSubmit);
 
 
 
 //Adding Cards
-function createCard(initialCards) {
+function createCard(cardData) {
     const cardTemplate = document.querySelector("#cards-template").content;
     const elementsList = document.querySelector('.elements__list');
+    const addCard = cardTemplate.cloneNode(true);
 
-    initialCards.forEach(initialCards => {
-        const addCard = cardTemplate.cloneNode(true);
-        addCard.querySelector(".elements__card-image").src = initialCards.link;
-        addCard.querySelector(".elements__card-image").alt = initialCards.alt;
-        addCard.querySelector(".elements__title").textContent = initialCards.name;
-        console.log(initialCards);
-        elementsList.prepend(addCard);
-    });
+    addCard.querySelector(".elements__card-image").src = cardData.link;
+    addCard.querySelector(".elements__card-image").alt = cardData.alt;
+    addCard.querySelector(".elements__title").textContent = cardData.name;
+    elementsList.prepend(addCard);
 }
 
-createCard(initialCards);
+//Add initial cards
+function createInitialCards(initialCards) { 
+    initialCards.forEach(cardData => {
+    createCard(cardData)
+    });
+}
+createInitialCards(initialCards);
 
 //LATER FUNCTIONALITY ADD BUTTON
 // const addButton = querySelector(".profile__add-button");
