@@ -20,7 +20,7 @@
     flex-direction: column;
     width: calc(100% - 38px);
     max-width: 358px;
-    min-width: 248px;
+    min-width: 238px;
     position: relative;
     background-color: #fff;
     padding: 36px;
@@ -84,7 +84,7 @@
     }
 
     .modal__container {
-        max-width: 260px;
+        max-width: 238px;
         padding: 25px 22px;
     }
 

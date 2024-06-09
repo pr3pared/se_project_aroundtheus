@@ -1,71 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Christian Koshay">
-    <meta name="description" content="Platform to upload and share photos">
-    <meta name="keywords" content="photos, social, upload, art, nature, photography">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Christian Koshay" />
+    <meta name="description" content="Platform to upload and share photos" />
+    <meta
+      name="keywords"
+      content="photos, social, upload, art, nature, photography"
+    />
     <title>Around the US</title>
-    <link rel="stylesheet" href="./pages/index.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body>
-    <div class="page">           
-         <!-- HEADER SECTION  -->
-        <header class="header">
-            <div class="header__content">
-                <img src="./images/logo.svg" alt="Site Logo" class="header__logo">
-            </div>
-        </header>
-        <main class="page__content">
-            <!-- PROFILE SECTION -->
-            <section class="profile">
-                <img src="./images/Avatar.png" alt="Avatar" class="profile__avatar">
-                <div class="profile__info">
-                    <h1 class="profile__name">
-                        Jacques Cousteau
-                    </h1>
-                    <button class="profile__edit-button" type="button"></button>
-                    <p class="profile__description">
-                        Explorer
-                    </p>
-                
+    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- HEADER SECTION  -->
+      <header class="header">
+        <div class="header__content">
+          <img src="./images/logo.svg" alt="Site Logo" class="header__logo" />
+        </div>
+      </header>
+      <main class="page__content">
+        <!-- PROFILE SECTION -->
+        <section class="profile">
+          <img src="./images/Avatar.png" alt="Avatar" class="profile__avatar" />
+          <div class="profile__info">
+            <h1 class="profile__name">Jacques Cousteau</h1>
+            <button class="profile__edit-button" type="button"></button>
+            <p class="profile__description">Explorer</p>
+          </div>
+          <button class="profile__add-button" type="button"></button>
+        </section>
+        <!-- ELEMENTS SECTION -->
+        <section class="elements">
+          <ul class="elements__list">
+            <template id="cards-template">
+              <li class="elements__card">
+                <img alt="" class="elements__card-image" />
+                <div class="elements__bottom-card">
+                  <h2 class="elements__title"></h2>
+                  <button type="button" class="elements__button"></button>
                 </div>
-                <button class="profile__add-button" type="button"></button>
-            </section>
-            <!-- ELEMENTS SECTION -->
-            <section class="elements">
-                <ul class="elements__list">
-                    <template id="cards-template">
-                        <li class="elements__card">
-                            <img alt="" class="elements__card-image">
-                            <div class="elements__bottom-card">
-                                <h2 class="elements__title"></h2>
-                                <button type="button" class="elements__button"></button>
-                            </div>
-                        </li>
-                    </template>
-                </ul>
-            </section>
-           
-        </main> 
-        <!-- FOOTER SECTION -->
-        <footer class="footer">
-            <p class="footer__copyright">©️ 2024 Christian Koshay</p>
-        </footer>
-        <div class="modal modal_hidden">
+              </li>
+            </template>
+          </ul>
+        </section>
+      </main>
+      <!-- FOOTER SECTION -->
+      <footer class="footer">
+        <p class="footer__copyright">©️ 2024 Christian Koshay</p>
+      </footer>
+      <div class="modal modal_hidden">
         <div class="modal__container">
-            <button class="modal__close"></button>
-            <p class="modal__heading">Edit Profile</p>
-            <form class="modal__form">
-                <input type="text" name="profile-name" class="modal__input" placeholder="Name">
-                <input type="text" name="profile-description" class="modal__input" placeholder="Description">
-                <button class="modal__button" type="submit">Save</button>
-            </form>
+          <button class="modal__close"></button>
+          <p class="modal__heading">Edit Profile</p>
+          <form class="modal__form">
+            <input
+              type="text"
+              name="profile-name"
+              class="modal__input"
+              placeholder="Jacques Cousteau"
+            />
+            <input
+              type="text"
+              name="profile-description"
+              class="modal__input"
+              placeholder="Explorer"
+            />
+            <button class="modal__button" type="submit">Save</button>
+          </form>
         </div>
-        </div>
-    </div>  
+      </div>
+    </div>
     <script src="./scripts/index.js"></script>
-</body>
+  </body>
 </html>
