@@ -34,9 +34,12 @@ const initialCards = [
 //Profile Modal Handler
 
 let editButton = document.querySelector(".profile__edit-button");
+let addButton = document.querySelector(".profile__add-button");
 let modal = document.querySelector(".modal");
 let modalClose = document.querySelector(".modal__close");
 let modalForm = document.querySelector(".modal__form");
+let modalButton = document.querySelector(".modal__button");
+
 
 
 const profileName = document.querySelector(".profile__name");
@@ -44,29 +47,62 @@ const profileDescription = document.querySelector(".profile__description");
 const elementsList = document.querySelector(".elements__list");
 
 //New Submitted Names
-const modalFormName = document.querySelector("[name = 'profile-name']");
-const modalFormDescription = document.querySelector("[name = 'profile-description']");
+const modalFormFirstInput = document.querySelector("[name = 'first-input']");
+const modalFormSecondInput = document.querySelector("[name = 'second-input']");
+const modalHeading = document.querySelector(".modal__heading");
 
 function toggleProfileModal() {
   modal.classList.toggle("modal_hidden");
 }
 
 function openProfileModal() {
-  modalFormName.value = profileName.innerText;
-  modalFormDescription.value = profileDescription.innerText;
+  modalFormFirstInput.value = profileName.innerText;
+  modalFormSecondInput.value = profileDescription.innerText;
+  modalHeading.textContent = "Edit Profile";
+  modalButton.textContent = "Save";
+  toggleProfileModal();
+}
+
+function openAddCardModal() {
+  modalFormFirstInput.value = "";
+  modalFormSecondInput.value = "";
+  modalFormFirstInput.placeholder = 'Title';
+  modalFormSecondInput.placeholder = "Image Link";
+  modalHeading.textContent = "New Place";
+  modalButton.textContent = "Create";
   toggleProfileModal();
 }
 
 function handleProfileFormSubmit(event) {
-  event.preventDefault();
-  profileName.textContent = modalFormName.value;
-  profileDescription.textContent = modalFormDescription.value;
+  profileName.textContent = modalFormFirstInput.value;
+  profileDescription.textContent = modalFormSecondInput.value;
+  toggleProfileModal();
+}
+
+function handleAddCardFormSubmit(event) {
+  let newCard = {name: modalFormFirstInput.value, link: modalFormSecondInput.value, alt: modalFormFirstInput.value}
+  console.log(newCard);
+  initialCards.push(newCard);
+  const newCardElement = createCard(newCard);
+  elementsList.append(newCardElement);
   toggleProfileModal();
 }
 
 editButton.addEventListener("click", openProfileModal);
+addButton.addEventListener("click", openAddCardModal);
 modalClose.addEventListener("click", toggleProfileModal);
-modalForm.addEventListener("submit", handleProfileFormSubmit);
+modalForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  let modalButtonText = modalButton.textContent;
+  console.log(modalButtonText);
+  if (modalButtonText === "Create") {
+      handleAddCardFormSubmit();
+  } else if (modalButtonText === "Save") {
+      handleProfileFormSubmit();
+  } else {
+    console.log("None");
+  }
+});
 
 //Adding Cards
 function createCard(cardData) {
@@ -76,8 +112,6 @@ function createCard(cardData) {
   cardElement.querySelector(".elements__card-image").src = cardData.link;
   cardElement.querySelector(".elements__card-image").alt = cardData.alt;
   cardElement.querySelector(".elements__title").textContent = cardData.name;
-  //console.log(cardData);
-  console.log(cardElement);
   return cardElement;
 }
 
@@ -85,8 +119,3 @@ initialCards.forEach((cardData) => {
   const createCardElement = createCard(cardData);
   elementsList.append(createCardElement)
 });
-
-
-//LATER FUNCTIONALITY ADD BUTTON
-// const addButton = querySelector(".profile__add-button");
-// addButton.addEventListener()

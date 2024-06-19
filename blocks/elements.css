@@ -16,6 +16,7 @@
     flex-direction: column;
     list-style-type: none;
     max-width: 282px;
+    position: relative;
 }
 
 .elements__bottom-card {
@@ -59,8 +60,31 @@
     background-position: center;
 }
 
+.elements__button_delete {
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    height: 19px;
+    width: 18px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    background-image: url(../images/TrashCan.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
 .elements__button:hover {
     opacity: 50%;
+}
+
+.elements__button:active {
+    color: #000;
+}
+
+.elements__button_delete:hover {
+    opacity: 60%;
 }
 
 @media screen and (min-width:602px) and (max-width:799px) {
