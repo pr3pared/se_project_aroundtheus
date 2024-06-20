@@ -58,6 +58,8 @@
     background-image: url(../images/heart.svg);
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 100%;
+    transition: opacity 0.8s linear;
 }
 
 .elements__button_delete {
@@ -79,8 +81,8 @@
     opacity: 50%;
 }
 
-.elements__button:active {
-    color: #000;
+.elements__button_active {
+    background-image: url(../images/ActiveHeart.svg);
 }
 
 .elements__button_delete:hover {
