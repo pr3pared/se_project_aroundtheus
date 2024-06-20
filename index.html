@@ -52,24 +52,47 @@
       <footer class="footer">
         <p class="footer__copyright">©️ 2024 Christian Koshay</p>
       </footer>
-      <div class="modal modal_hidden">
+      <!-- PROFILE MODAL -->
+      <div class="modal-profile modal_hidden">
         <div class="modal__container">
           <button class="modal__close"></button>
-          <p class="modal__heading"></p>
-          <form class="modal__form">
+          <p class="modal__heading">Edit Profile</p>
+          <form class="modal__form_profile">
             <input
               type="text"
               name="first-input"
               class="modal__input"
-              placeholder=""
+              placeholder="Name"
             />
             <input
               type="text"
               name="second-input"
               class="modal__input"
-              placeholder=""
+              placeholder="Description"
             />
-            <button class="modal__button" type="submit"></button>
+            <button class="modal__button" type="submit">Save</button>
+          </form>
+        </div>
+      </div>
+      <!-- ADD NEW CARD MODAL -->
+      <div class="modal-card modal_hidden">
+        <div class="modal__container">
+          <button class="modal__close"></button>
+          <p class="modal__heading">New place</p>
+          <form class="modal__form_card">
+            <input
+              type="text"
+              name="first-input"
+              class="modal__input"
+              placeholder="Place"
+            />
+            <input
+              type="text"
+              name="second-input"
+              class="modal__input"
+              placeholder="Image Link"
+            />
+            <button class="modal__button" type="submit">Create</button>
           </form>
         </div>
       </div>

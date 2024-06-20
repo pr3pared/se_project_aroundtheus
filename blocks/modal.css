@@ -1,4 +1,4 @@
-.modal {
+.modal-card, .modal-photo, .modal-profile {
     position: fixed;
     display: flex;
     align-items: center;
@@ -9,30 +9,14 @@
     right: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
-    opacity: 1;
-    visibility: visible;
-    transition: visibility 0.5s, opacity 0.5s linear;
-}
-
-.modal-photo {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    opacity: 1;
-    visibility: visible;
+    opacity: 0;
+    visibility: hidden;
     transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 .modal_hidden {
-    visibility: hidden;
-    opacity: 0;
+    visibility: visible;
+    opacity: 1;
 }
 
 .modal__container {
@@ -117,7 +101,7 @@
     margin-bottom: 24px;
 }
 
-.modal__form {
+.modal__form_profile, .modal__form_card {
     display: flex;
     flex-direction: column;
     text-align: left;

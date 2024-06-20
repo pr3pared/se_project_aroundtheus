@@ -33,16 +33,19 @@ const initialCards = [
 
 //Profile Modal Handler
 
-let editButton = document.querySelector(".profile__edit-button");
-let addButton = document.querySelector(".profile__add-button");
-let modal = document.querySelector(".modal");
-let modalClose = document.querySelector(".modal__close");
-let modalForm = document.querySelector(".modal__form");
-let modalButton = document.querySelector(".modal__button");
-let modalPhoto = document.querySelector(".modal-photo");
-let modalPhotoImage = modalPhoto.querySelector('.modal-photo__image');
-let modalPhotoClose = modalPhoto.querySelector(".modal-photo__button");
-
+const editButton = document.querySelector(".profile__edit-button");
+const addButton = document.querySelector(".profile__add-button");
+const modalProfile = document.querySelector(".modal-profile");
+const modalCard = document.querySelector(".modal-card");
+const modalProfileClose = modalProfile.querySelector(".modal__close");
+const modalCardClose = modalCard.querySelector(".modal__close");
+const modalFormProfile = document.querySelector(".modal__form_profile");
+const modalFormCard = document.querySelector(".modal__form_card");
+const modalButton = document.querySelector(".modal__button");
+const modalPhoto = document.querySelector(".modal-photo");
+const modalPhotoImage = modalPhoto.querySelector('.modal-photo__image');
+const modalPhotoClose = modalPhoto.querySelector(".modal-photo__button");
+debugger
 
 
 const profileName = document.querySelector(".profile__name");
@@ -57,30 +60,18 @@ const modalHeading = document.querySelector(".modal__heading");
 
 //Modal Handling
 
-function toggleModal() {
+function toggleModal(modal) {
   modal.classList.toggle("modal_hidden");
-}
-
-function togglePhotoModal() {
-  modalPhoto.classList.toggle("modal_hidden");
 }
 
 function openProfileModal() {
   modalFormFirstInput.value = profileName.innerText;
   modalFormSecondInput.value = profileDescription.innerText;
-  modalHeading.textContent = "Edit Profile";
-  modalButton.textContent = "Save";
-  toggleModal();
+  toggleModal(modalProfile);
 }
 
 function openAddCardModal() {
-  modalFormFirstInput.value = "";
-  modalFormSecondInput.value = "";
-  modalFormFirstInput.placeholder = 'Title';
-  modalFormSecondInput.placeholder = "Image Link";
-  modalHeading.textContent = "New Place";
-  modalButton.textContent = "Create";
-  toggleModal();
+  toggleModal(modalCard);
 }
 
 function openPhotoModal(cardData) {
@@ -90,8 +81,9 @@ function openPhotoModal(cardData) {
 
   modalPhotoImage.src = cardData.link;
   modalTitle.textContent = cardData.name;
+  modalPhotoImage.alt = cardData.alt;
 
-  togglePhotoModal();
+  toggleModal(modalPhoto);
 }
 
 //Modal Form Submission Handling
@@ -99,7 +91,9 @@ function openPhotoModal(cardData) {
 function handleProfileFormSubmit(event) {
   profileName.textContent = modalFormFirstInput.value;
   profileDescription.textContent = modalFormSecondInput.value;
-  toggleModal();
+  modalFormFirstInput.value = "";
+  modalFormSecondInput.value = "";
+  toggleModal(modalProfile);
 }
 
 function handleAddCardFormSubmit(event) {
@@ -107,27 +101,29 @@ function handleAddCardFormSubmit(event) {
   console.log(newCard);
   initialCards.push(newCard);
   const newCardElement = createCard(newCard);
-  elementsList.append(newCardElement);
-  toggleModal();
+  elementsList.prepend(newCardElement);
+  toggleModal(modalCard);
 }
 
 editButton.addEventListener("click", openProfileModal);
 addButton.addEventListener("click", openAddCardModal);
-modalClose.addEventListener("click", toggleModal);
-modalPhotoClose.addEventListener("click", togglePhotoModal);
+debugger
+modalProfileClose.addEventListener("click",()=> { 
+  toggleModal(modalProfile);
+})
+modalCardClose.addEventListener("click", toggleModal(modalCard));
+
+modalPhotoClose.addEventListener("click", toggleModal(modalPhoto));
 
 //Chosing Which Modal to Handle
-modalForm.addEventListener('submit', function(event) {
+modalFormProfile.addEventListener('submit', function(event) {
   event.preventDefault();
-  let modalButtonText = modalButton.textContent;
-  //console.log(modalButtonText); Testing
-  if (modalButtonText === "Create") {
-      handleAddCardFormSubmit();
-  } else if (modalButtonText === "Save") {
-      handleProfileFormSubmit();
-  } else {
-    console.log("None");
-  }
+  handleProfileFormSubmit();
+});
+
+modalFormCard.addEventListener('submit', function(event) {
+  event.preventDefault();
+  handleAddCardFormSubmit();
 });
 
 //Adding Cards
