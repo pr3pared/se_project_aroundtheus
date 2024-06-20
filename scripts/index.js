@@ -31,10 +31,15 @@ const initialCards = [
   },
 ];
 
-//Profile Modal Handler
-
+//Profile Selectors
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__description");
+//Element Selectors
+const elementsList = document.querySelector(".elements__list");
+const elementsCardPhoto = elementsList.querySelector(".elements__card-image");
+//Modal Selectors
 const modalProfile = document.querySelector(".modal-profile");
 const modalCard = document.querySelector(".modal-card");
 const modalProfileClose = modalProfile.querySelector(".modal__close");
@@ -45,18 +50,10 @@ const modalButton = document.querySelector(".modal__button");
 const modalPhoto = document.querySelector(".modal-photo");
 const modalPhotoImage = modalPhoto.querySelector('.modal-photo__image');
 const modalPhotoClose = modalPhoto.querySelector(".modal-photo__button");
-debugger
-
-
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-const elementsList = document.querySelector(".elements__list");
-const elementsCardPhoto = elementsList.querySelector(".elements__card-image");
-
-//New Submitted Names
-const modalFormFirstInput = document.querySelector("[name = 'first-input']");
-const modalFormSecondInput = document.querySelector("[name = 'second-input']");
-const modalHeading = document.querySelector(".modal__heading");
+const modalFormProfileName = modalFormProfile.querySelector(".modal__input_type_name");
+const modalFormProfileDescription = modalFormProfile.querySelector(".modal__input_type_description");
+const modalCardFormPlace = modalFormCard.querySelector(".modal__input_type_place");
+const modalCardFormImage = modalFormCard.querySelector(".modal__input_type_image");
 
 //Modal Handling
 
@@ -65,8 +62,8 @@ function toggleModal(modal) {
 }
 
 function openProfileModal() {
-  modalFormFirstInput.value = profileName.innerText;
-  modalFormSecondInput.value = profileDescription.innerText;
+  modalFormProfileName.value = profileName.textContent;
+  modalFormProfileDescription.value = profileDescription.textContent;
   toggleModal(modalProfile);
 }
 
@@ -89,33 +86,34 @@ function openPhotoModal(cardData) {
 //Modal Form Submission Handling
 
 function handleProfileFormSubmit(event) {
-  profileName.textContent = modalFormFirstInput.value;
-  profileDescription.textContent = modalFormSecondInput.value;
-  modalFormFirstInput.value = "";
-  modalFormSecondInput.value = "";
+  profileName.textContent = modalFormProfileName.value;
+  profileDescription.textContent = modalFormProfileDescription.value;
   toggleModal(modalProfile);
 }
 
 function handleAddCardFormSubmit(event) {
-  let newCard = {name: modalFormFirstInput.value, link: modalFormSecondInput.value, alt: modalFormFirstInput.value}
-  console.log(newCard);
-  initialCards.push(newCard);
+  let newCard = {name: modalCardFormPlace.value, link: modalCardFormImage.value, alt: modalCardFormPlace.value}
   const newCardElement = createCard(newCard);
   elementsList.prepend(newCardElement);
   toggleModal(modalCard);
+  modalCardFormPlace.value = ("");
+  modalCardFormImage.value = ("");
 }
 
+//Opening and Closing Popups
 editButton.addEventListener("click", openProfileModal);
 addButton.addEventListener("click", openAddCardModal);
-debugger
 modalProfileClose.addEventListener("click",()=> { 
   toggleModal(modalProfile);
 })
-modalCardClose.addEventListener("click", toggleModal(modalCard));
+modalCardClose.addEventListener("click",()=> { 
+  toggleModal(modalCard);
+})
+modalPhotoClose.addEventListener("click",()=> { 
+  toggleModal(modalPhoto);
+})
 
-modalPhotoClose.addEventListener("click", toggleModal(modalPhoto));
-
-//Chosing Which Modal to Handle
+//Form Submission Handlers
 modalFormProfile.addEventListener('submit', function(event) {
   event.preventDefault();
   handleProfileFormSubmit();
@@ -128,16 +126,18 @@ modalFormCard.addEventListener('submit', function(event) {
 
 //Adding Cards
 function createCard(cardData) {
+  console.log(cardData);
   const cardTemplate = document.querySelector("#cards-template").content;
   const cardElement = cardTemplate.cloneNode(true);
   const likeButton = cardElement.querySelector(".elements__button");
   const card = cardElement.querySelector('.elements__card');
   const deleteButton = card.querySelector('.elements__button_delete');
   const cardPhoto = card.querySelector(".elements__card-image");
-  
-  cardElement.querySelector(".elements__card-image").src = cardData.link;
-  cardElement.querySelector(".elements__card-image").alt = cardData.alt;
-  cardElement.querySelector(".elements__title").textContent = cardData.name;
+  const cardTitle = card.querySelector(".elements__title");
+
+  cardPhoto.src = cardData.link;
+  cardTitle.textContent = cardData.alt;
+  cardTitle.textContent = cardData.name;
   //Like Button Listener
   likeButton.addEventListener('click', () => {
     likeButton.classList.toggle('elements__button_active');

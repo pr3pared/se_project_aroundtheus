@@ -9,14 +9,14 @@
     right: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visibile;
     transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 .modal_hidden {
-    visibility: visible;
-    opacity: 1;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .modal__container {
@@ -107,7 +107,7 @@
     text-align: left;
 }
 
-.modal__input {
+.modal__input_type_name, .modal__input_type_description, .modal__input_type_place, .modal__input_type_image {
     padding: 0 0 13px 0;
     margin: 30px 0 0 0;
     border: none;

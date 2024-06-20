@@ -53,7 +53,7 @@
         <p class="footer__copyright">©️ 2024 Christian Koshay</p>
       </footer>
       <!-- PROFILE MODAL -->
-      <div class="modal-profile modal_hidden">
+      <div class="modal modal-profile modal_hidden">
         <div class="modal__container">
           <button class="modal__close"></button>
           <p class="modal__heading">Edit Profile</p>
@@ -61,13 +61,13 @@
             <input
               type="text"
               name="first-input"
-              class="modal__input"
+              class="modal__input_type_name"
               placeholder="Name"
             />
             <input
               type="text"
               name="second-input"
-              class="modal__input"
+              class="modal__input_type_description"
               placeholder="Description"
             />
             <button class="modal__button" type="submit">Save</button>
@@ -75,7 +75,7 @@
         </div>
       </div>
       <!-- ADD NEW CARD MODAL -->
-      <div class="modal-card modal_hidden">
+      <div class="modal modal-card modal_hidden">
         <div class="modal__container">
           <button class="modal__close"></button>
           <p class="modal__heading">New place</p>
@@ -83,20 +83,20 @@
             <input
               type="text"
               name="first-input"
-              class="modal__input"
+              class="modal__input_type_place"
               placeholder="Place"
             />
             <input
               type="text"
               name="second-input"
-              class="modal__input"
+              class="modal__input_type_image"
               placeholder="Image Link"
             />
             <button class="modal__button" type="submit">Create</button>
           </form>
         </div>
       </div>
-      <div class="modal-photo modal_hidden">
+      <div class="modal modal-photo modal_hidden">
         <div class="modal-photo__container">
           <button class="modal-photo__button"></button>
           <img src="" alt="" class="modal-photo__image">
