@@ -143,6 +143,8 @@
     .modal-photo__button {
         height: 30px;
         width: 30px;
+        top: -45px;
+        right: -45px;
     }
 
     .modal__container {

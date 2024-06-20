@@ -79,7 +79,6 @@ function openPhotoModal(cardData) {
   modalPhotoImage.src = cardData.link;
   modalTitle.textContent = cardData.name;
   modalPhotoImage.alt = cardData.alt;
-
   toggleModal(modalPhoto);
 }
 
@@ -92,10 +91,12 @@ function handleProfileFormSubmit(event) {
 }
 
 function handleAddCardFormSubmit(event) {
-  let newCard = {name: modalCardFormPlace.value, link: modalCardFormImage.value, alt: modalCardFormPlace.value}
+  const newCard = {name: modalCardFormPlace.value, link: modalCardFormImage.value, alt: modalCardFormPlace.value}
   const newCardElement = createCard(newCard);
+  
   elementsList.prepend(newCardElement);
   toggleModal(modalCard);
+  //Couldn't get the event target to work
   modalCardFormPlace.value = ("");
   modalCardFormImage.value = ("");
 }
@@ -136,7 +137,7 @@ function createCard(cardData) {
   const cardTitle = card.querySelector(".elements__title");
 
   cardPhoto.src = cardData.link;
-  cardTitle.textContent = cardData.alt;
+  cardPhoto.alt = cardData.alt;
   cardTitle.textContent = cardData.name;
   //Like Button Listener
   likeButton.addEventListener('click', () => {
