@@ -53,66 +53,73 @@
         <p class="footer__copyright">©️ 2024 Christian Koshay</p>
       </footer>
       <!-- PROFILE MODAL -->
-      <div class="modal modal-profile modal_hidden">
-        <div class="modal__container">
-          <button class="modal__close"></button>
-          <p class="modal__heading">Edit Profile</p>
-          <form class="modal__form_profile">
+      <div class="popup popup-profile popup_hidden">
+        <div class="popup__container">
+          <button class="popup__close"></button>
+          <p class="popup__heading">Edit Profile</p>
+          <form class="popup__form_profile popup__form">
             <input
               type="text"
               required
               minlength="2"
               maxlength="40"
               name="first-input"
-              class="modal__input_type_name"
+              class="popup__input_type_name popup__input"
+              id="owner-name"
               placeholder="Name"
             />
+            <span class="popup__error" id="owner-name-error"></span>
             <input
               type="text"
               required
               minlength="2"
               maxlength="200"
               name="second-input"
-              class="modal__input_type_description"
+              class="popup__input_type_description popup__input"
+              id="owner-description" 
               placeholder="Description"
             />
-            <button class="modal__button" type="submit">Save</button>
+            <span class="popup__error" id="owner-description-error"></span>
+            <button class="popup__button" type="submit">Save</button>
           </form>
         </div>
       </div>
       <!-- ADD NEW CARD MODAL -->
-      <div class="modal modal-card modal_hidden">
-        <div class="modal__container">
-          <button class="modal__close"></button>
-          <p class="modal__heading">New place</p>
-          <form class="modal__form_card">
+      <div class="popup popup-card popup_hidden">
+        <div class="popup__container">
+          <button class="popup__close"></button>
+          <p class="popup__heading">New place</p>
+          <form class="popup__form_card popup__form">
             <input
               type="text"
               required
               maxlength="30"
               name="first-input"
-              class="modal__input_type_place"
+              class="popup__input_type_place popup__input"
               placeholder="Place"
             />
+            <span class="popup__error"></span>
             <input
               type="url"
               required
               name="second-input"
-              class="modal__input_type_image"
+              class="popup__input_type_image popup__input"
               placeholder="Image Link"
             />
-            <button class="modal__button" type="submit">Create</button>
+            <span class="popup__error"></span>
+            <button class="popup__button" type="submit">Create</button>
           </form>
         </div>
       </div>
-      <div class="modal modal-photo modal_hidden">
-        <div class="modal-photo__container">
-          <button class="modal-photo__button modal__close"></button>
-          <img src="" alt="" class="modal-photo__image">
-          <p class="modal-photo__title"></p>
+      <div class="popup popup-photo popup_hidden">
+        <div class="popup-photo__container">
+          <button class="popup-photo__button popup__close"></button>
+          <img src="" alt="" class="popup-photo__image">
+          <p class="popup-photo__title"></p>
         </div>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

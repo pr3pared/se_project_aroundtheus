@@ -39,88 +39,88 @@ const profileDescription = document.querySelector(".profile__description");
 //Element Selectors
 const elementsList = document.querySelector(".elements__list");
 const elementsCardPhoto = elementsList.querySelector(".elements__card-image");
-//Modal Selectors
-const modalProfile = document.querySelector(".modal-profile");
-const modalCard = document.querySelector(".modal-card");
-const modalProfileClose = modalProfile.querySelector(".modal__close");
-const modalCardClose = modalCard.querySelector(".modal__close");
-const modalFormProfile = document.querySelector(".modal__form_profile");
-const modalFormCard = document.querySelector(".modal__form_card");
-const modalButton = document.querySelector(".modal__button");
-const modalPhoto = document.querySelector(".modal-photo");
-const modalPhotoImage = modalPhoto.querySelector('.modal-photo__image');
-const modalPhotoClose = modalPhoto.querySelector(".modal-photo__button");
-const modalFormProfileName = modalFormProfile.querySelector(".modal__input_type_name");
-const modalFormProfileDescription = modalFormProfile.querySelector(".modal__input_type_description");
-const modalCardFormPlace = modalFormCard.querySelector(".modal__input_type_place");
-const modalCardFormImage = modalFormCard.querySelector(".modal__input_type_image");
+//Popup Selectors
+const popupProfile = document.querySelector(".popup-profile");
+const popupCard = document.querySelector(".popup-card");
+const popupProfileClose = popupProfile.querySelector(".popup__close");
+const popupCardClose = popupCard.querySelector(".popup__close");
+const popupFormProfile = document.querySelector(".popup__form_profile");
+const popupFormCard = document.querySelector(".popup__form_card");
+const popupButton = document.querySelector(".popup__button");
+const popupPhoto = document.querySelector(".popup-photo");
+const popupPhotoImage = popupPhoto.querySelector('.popup-photo__image');
+const popupPhotoClose = popupPhoto.querySelector(".popup-photo__button");
+const popupFormProfileName = popupFormProfile.querySelector(".popup__input_type_name");
+const popupFormProfileDescription = popupFormProfile.querySelector(".popup__input_type_description");
+const popupCardFormPlace = popupFormCard.querySelector(".popup__input_type_place");
+const popupCardFormImage = popupFormCard.querySelector(".popup__input_type_image");
 
-//Modal Handling
+//Popup Handling
 
-function toggleModal(modal) {
-  modal.classList.toggle("modal_hidden");
+function togglePopup(popup) {
+  popup.classList.toggle("popup_hidden");
 }
 
-function openProfileModal() {
-  modalFormProfileName.value = profileName.textContent;
-  modalFormProfileDescription.value = profileDescription.textContent;
-  toggleModal(modalProfile);
+function openProfilePopup() {
+  popupFormProfileName.value = profileName.textContent;
+  popupFormProfileDescription.value = profileDescription.textContent;
+  togglePopup(popupProfile);
 }
 
-function openAddCardModal() {
-  toggleModal(modalCard);
+function openAddCardPopup() {
+  togglePopup(popupCard);
 }
 
-function openPhotoModal(cardData) {
-  const modalPhoto = document.querySelector('.modal-photo');
-  const modalPhotoImage = modalPhoto.querySelector('.modal-photo__image');
-  const modalTitle = modalPhoto.querySelector(".modal-photo__title");
+function openPhotoPopup(cardData) {
+  const popupPhoto = document.querySelector('.popup-photo');
+  const popupPhotoImage = popupPhoto.querySelector('.popup-photo__image');
+  const popupTitle = popupPhoto.querySelector(".popup-photo__title");
 
-  modalPhotoImage.src = cardData.link;
-  modalTitle.textContent = cardData.name;
-  modalPhotoImage.alt = cardData.alt;
-  toggleModal(modalPhoto);
+  popupPhotoImage.src = cardData.link;
+  popupTitle.textContent = cardData.name;
+  popupPhotoImage.alt = cardData.alt;
+  togglePopup(popupPhoto);
 }
 
-//Modal Form Submission Handling
+//Popup Form Submission Handling
 
 function handleProfileFormSubmit(event) {
-  profileName.textContent = modalFormProfileName.value;
-  profileDescription.textContent = modalFormProfileDescription.value;
-  toggleModal(modalProfile);
+  profileName.textContent = popupFormProfileName.value;
+  profileDescription.textContent = popupFormProfileDescription.value;
+  togglePopup(popupProfile);
 }
 
 function handleAddCardFormSubmit(event) {
-  const newCard = {name: modalCardFormPlace.value, link: modalCardFormImage.value, alt: modalCardFormPlace.value}
+  const newCard = {name: popupCardFormPlace.value, link: popupCardFormImage.value, alt: popupCardFormPlace.value}
   const newCardElement = createCard(newCard);
   
   elementsList.prepend(newCardElement);
-  toggleModal(modalCard);
+  togglePopup(popupCard);
   //Couldn't get the event target to work
-  modalCardFormPlace.value = ("");
-  modalCardFormImage.value = ("");
+  popupCardFormPlace.value = ("");
+  popupCardFormImage.value = ("");
 }
 
 //Opening and Closing Popups
-editButton.addEventListener("click", openProfileModal);
-addButton.addEventListener("click", openAddCardModal);
-modalProfileClose.addEventListener("click",()=> { 
-  toggleModal(modalProfile);
+editButton.addEventListener("click", openProfilePopup);
+addButton.addEventListener("click", openAddCardPopup);
+popupProfileClose.addEventListener("click",()=> { 
+  togglePopup(popupProfile);
 })
-modalCardClose.addEventListener("click",()=> { 
-  toggleModal(modalCard);
+popupCardClose.addEventListener("click",()=> { 
+  togglePopup(popupCard);
 })
-modalPhotoClose.addEventListener("click",()=> { 
-  toggleModal(modalPhoto);
+popupPhotoClose.addEventListener("click",()=> { 
+  togglePopup(popupPhoto);
 })
 
 //Form Submission Handlers
-modalFormProfile.addEventListener('submit', function(event) {
+popupFormProfile.addEventListener('submit', function(event) {
   event.preventDefault();
   handleProfileFormSubmit();
 });
 
-modalFormCard.addEventListener('submit', function(event) {
+popupFormCard.addEventListener('submit', function(event) {
   event.preventDefault();
   handleAddCardFormSubmit();
 });
@@ -149,7 +149,7 @@ function createCard(cardData) {
   });
 
   cardPhoto.addEventListener('click', () => {
-    openPhotoModal(cardData);
+    openPhotoPopup(cardData);
   });
   return cardElement;
 }

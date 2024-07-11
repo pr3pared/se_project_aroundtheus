@@ -1,4 +1,4 @@
-.modal-card, .modal-photo, .modal-profile {
+.popup-card, .popup-photo, .popup-profile {
     position: fixed;
     display: flex;
     align-items: center;
@@ -14,12 +14,12 @@
     transition: visibility 0.5s, opacity 0.5s linear;
 }
 
-.modal_hidden {
+.popup_hidden {
     visibility: hidden;
     opacity: 0;
 }
 
-.modal__container {
+.popup__container {
     display: flex;
     flex-direction: column;
     width: calc(100% - 38px);
@@ -32,7 +32,7 @@
     font-family: Inter, Arial, sans-serif;
 }
 
-.modal-photo__container {
+.popup-photo__container {
     display: flex;
     flex-direction: column;
     max-width: 75vw;
@@ -42,7 +42,7 @@
     font-family: Inter, Arial, sans-serif;
 }
 
-.modal-photo__button {
+.popup-photo__button {
     position: absolute;
     top: -45px;
     right: -45px;
@@ -56,22 +56,22 @@
     height: 40px;
 }
 
-.modal-photo__button:hover {
+.popup-photo__button:hover {
     opacity: 60%;
 }
 
-.modal-photo__image {
+.popup-photo__image {
     max-width: 75vw;
     max-height: 75vh;
 }
 
-.modal-photo__title {
+.popup-photo__title {
     font-size: 12px;
     margin: 10 0 0;
 }
 
 
-.modal__close {
+.popup__close {
     position: absolute;
     top: -45px;
     right: -45px;
@@ -88,11 +88,11 @@
     transition: opacity 0.8s linear;
 }
 
-.modal__close:hover {
+.popup__close:hover {
     opacity: 60%;
 }
 
-.modal__heading {
+.popup__heading {
     font-weight: 900;
     font-size: 24px;
     line-height: 1.2;
@@ -101,13 +101,13 @@
     margin-bottom: 24px;
 }
 
-.modal__form_profile, .modal__form_card {
+.popup__form_profile, .popup__form_card {
     display: flex;
     flex-direction: column;
     text-align: left;
 }
 
-.modal__input_type_name, .modal__input_type_description, .modal__input_type_place, .modal__input_type_image {
+.popup__input_type_name, .popup__input_type_description, .popup__input_type_place, .popup__input_type_image {
     padding: 0 0 13px 0;
     margin: 30px 0 0 0;
     border: none;
@@ -116,7 +116,7 @@
     font-weight: 400;
 }
 
-.modal__button {
+.popup__button {
     padding: 0;
     margin: 48px 0 0 0;
     background-color: #000;
@@ -126,38 +126,38 @@
     transition: opacity 0.8s linear;
 }
 
-.modal__button:hover {
+.popup__button:hover {
     opacity: 80%;
     cursor: pointer;
     background-color:rgb(0, 0, 0);
 }
 
 @media screen and (min-width: 320px) and (max-width: 608px) {
-    .modal__close {
+    .popup__close {
         top: -54px;
         right: 0px;
         width: 26px;
         height: 26px;
     }
 
-    .modal-photo__button {
+    .popup-photo__button {
         height: 30px;
         width: 30px;
         top: -45px;
         right: -45px;
     }
 
-    .modal__container {
+    .popup__container {
         max-width: 238px;
         padding: 25px 22px;
     }
 
-    .modal__heading {
+    .popup__heading {
         font-size: 18px;
         margin: 0 0 45px 0;
     }
 
-    .modal__button {
+    .popup__button {
         font-size: 14px;
         margin: 45px 0 0 0;
         font-weight: 400;
