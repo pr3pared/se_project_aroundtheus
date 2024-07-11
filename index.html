@@ -60,12 +60,18 @@
           <form class="modal__form_profile">
             <input
               type="text"
+              required
+              minlength="2"
+              maxlength="40"
               name="first-input"
               class="modal__input_type_name"
               placeholder="Name"
             />
             <input
               type="text"
+              required
+              minlength="2"
+              maxlength="200"
               name="second-input"
               class="modal__input_type_description"
               placeholder="Description"
@@ -82,12 +88,15 @@
           <form class="modal__form_card">
             <input
               type="text"
+              required
+              maxlength="30"
               name="first-input"
               class="modal__input_type_place"
               placeholder="Place"
             />
             <input
-              type="text"
+              type="url"
+              required
               name="second-input"
               class="modal__input_type_image"
               placeholder="Image Link"
