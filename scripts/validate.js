@@ -1,6 +1,3 @@
-//enabling validation by calling enableValidation()
-//pass all the settings on call
-
 function showInputError(formElement, inputElement, { inputErrorClass, errorClass }) {
     const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`)
     inputElement.classList.add(inputErrorClass);
@@ -48,9 +45,8 @@ function toggleButtonState(inputElements, submitButton, { inactiveButtonClass })
 }
 
 function setEventListeners(formElement, options) {
-    const { inputSelector } = options;
-    const inputElements = [...formElement.querySelectorAll(inputSelector)];
-    const submitButton = formElement.querySelector(".popup__button");
+    const inputElements = [...formElement.querySelectorAll(options.inputSelector)];
+    const submitButton = formElement.querySelector(options.submitButtonSelector);
 
     inputElements.forEach(inputElement => {
         inputElement.addEventListener("input", (event) => {
@@ -68,17 +64,6 @@ function enableValidation(options) {
         });
 
     setEventListeners(formElement, options);
-
-        //Find all inputs in the forms
-        //Loop through the inputs and see if valid
-            //if an input is not valid then 
-                //grab validation message 
-                //add error class to input
-                //show error message
-                // button is disabled
-            //if all input valid
-                //enable button
-                //reset error messages
     })
 }
 

@@ -120,7 +120,12 @@
     border-bottom:1px solid red;
 }
 
+.popup__error_container {
+    position: relative;
+}
+
 .popup__error {
+    position: absolute;
     opacity: 0;
     color: #FF0000;
     font-size: 12px;
@@ -146,10 +151,10 @@
 .popup__button:hover {
     opacity: 80%;
     cursor: pointer;
-    background-color:rgb(0, 0, 0);
 }
 
 .popup__button_disabled {
+    opacity: 100%;
     background-color: white;
     color: rgba(0, 0, 0, 0.2);
 }
