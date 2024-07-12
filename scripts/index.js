@@ -131,7 +131,6 @@ popupFormCard.addEventListener('submit', function(event) {
 
 //Adding Cards
 function createCard(cardData) {
-  console.log(cardData);
   const cardTemplate = document.querySelector("#cards-template").content;
   const cardElement = cardTemplate.cloneNode(true);
   const likeButton = cardElement.querySelector(".elements__button");
