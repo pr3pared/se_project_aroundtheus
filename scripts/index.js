@@ -63,7 +63,6 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.add("popup_hidden");
-  popup.classList.remove("popup_error");
 }
 
 function openProfilePopup() {
