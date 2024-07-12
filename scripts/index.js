@@ -57,18 +57,23 @@ const popupCardFormImage = popupFormCard.querySelector(".popup__input_type_image
 
 //Popup Handling
 
-function togglePopup(popup) {
-  popup.classList.toggle("popup_hidden");
+function openPopup(popup) {
+  popup.classList.remove("popup_hidden");
+}
+
+function closePopup(popup) {
+  popup.classList.add("popup_hidden");
+  popup.classList.remove("popup_error");
 }
 
 function openProfilePopup() {
   popupFormProfileName.value = profileName.textContent;
   popupFormProfileDescription.value = profileDescription.textContent;
-  togglePopup(popupProfile);
+  openPopup(popupProfile);
 }
 
 function openAddCardPopup() {
-  togglePopup(popupCard);
+  openPopup(popupCard);
 }
 
 function openPhotoPopup(cardData) {
@@ -79,7 +84,7 @@ function openPhotoPopup(cardData) {
   popupPhotoImage.src = cardData.link;
   popupTitle.textContent = cardData.name;
   popupPhotoImage.alt = cardData.alt;
-  togglePopup(popupPhoto);
+  openPopup(popupPhoto);
 }
 
 //Popup Form Submission Handling
@@ -87,7 +92,7 @@ function openPhotoPopup(cardData) {
 function handleProfileFormSubmit(event) {
   profileName.textContent = popupFormProfileName.value;
   profileDescription.textContent = popupFormProfileDescription.value;
-  togglePopup(popupProfile);
+  closePopup(popupProfile);
 }
 
 function handleAddCardFormSubmit(event) {
@@ -95,7 +100,7 @@ function handleAddCardFormSubmit(event) {
   const newCardElement = createCard(newCard);
   
   elementsList.prepend(newCardElement);
-  togglePopup(popupCard);
+  closePopup(popupCard);
   //Couldn't get the event target to work
   popupCardFormPlace.value = ("");
   popupCardFormImage.value = ("");
@@ -105,13 +110,13 @@ function handleAddCardFormSubmit(event) {
 editButton.addEventListener("click", openProfilePopup);
 addButton.addEventListener("click", openAddCardPopup);
 popupProfileClose.addEventListener("click",()=> { 
-  togglePopup(popupProfile);
+  closePopup(popupProfile);
 })
 popupCardClose.addEventListener("click",()=> { 
-  togglePopup(popupCard);
+  closePopup(popupCard);
 })
 popupPhotoClose.addEventListener("click",()=> { 
-  togglePopup(popupPhoto);
+  closePopup(popupPhoto);
 })
 
 //Form Submission Handlers
@@ -148,8 +153,26 @@ function createCard(cardData) {
     card.remove();
   });
 
-  cardPhoto.addEventListener('click', () => {
-    openPhotoPopup(cardData);
+document.addEventListener("keydown", function (event) {
+  const popup = document.querySelectorAll(".popup");
+  if(event.key === "Escape") {
+    popup.forEach((popups) => {
+      if (!popups.classList.contains("popup_hidden")) {
+        closePopup(popups);
+      }
+    });
+  };
+});
+
+document.addEventListener('click', function(event) {
+  const clickedElement = event.target;
+  if (event.target.classList.contains("popup")) {
+      closePopup(clickedElement);
+  }
+});
+
+cardPhoto.addEventListener('click', () => {
+  openPhotoPopup(cardData);
   });
   return cardElement;
 }
