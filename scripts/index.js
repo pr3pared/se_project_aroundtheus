@@ -31,15 +31,17 @@ const initialCards = [
   },
 ];
 
-//Profile Selectors
+/* -------------------------------------------------------------------------- */
+/*                              Profile Selectors                             */
+/* -------------------------------------------------------------------------- */
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
-//Element Selectors
+/* ---------------------------- Element Selectors --------------------------- */
 const elementsList = document.querySelector(".elements__list");
 const elementsCardPhoto = elementsList.querySelector(".elements__card-image");
-//Popup Selectors
+/* ----------------------------- Popup Selectors ---------------------------- */
 const popups = document.querySelectorAll(".popup");
 const popupProfile = document.querySelector(".popup-profile");
 const popupCard = document.querySelector(".popup-card");
@@ -57,7 +59,9 @@ const popupCardFormPlace = popupFormCard.querySelector(".popup__input_type_place
 const popupCardFormImage = popupFormCard.querySelector(".popup__input_type_image");
 const popupTitle = popupPhoto.querySelector(".popup-photo__title");
 
-//Popup Handling
+/* -------------------------------------------------------------------------- */
+/*                               Popup Handling                               */
+/* -------------------------------------------------------------------------- */
 
 function openPopup(popup) {
   popup.classList.remove("popup_hidden");
@@ -105,7 +109,9 @@ function openPhotoPopup(cardData) {
   openPopup(popupPhoto);
 }
 
-//Popup Form Submission Handling
+/* -------------------------------------------------------------------------- */
+/*                       Popup Form Submission Handling                       */
+/* -------------------------------------------------------------------------- */
 
 function handleProfileFormSubmit(event) {
   profileName.textContent = popupFormProfileName.value;
@@ -123,7 +129,9 @@ function handleAddCardFormSubmit(event) {
   popupCardFormImage.value = ("");
 }
 
-//Opening and Closing Popups
+/* -------------------------------------------------------------------------- */
+/*                         Opening and Closing Popups                         */
+/* -------------------------------------------------------------------------- */
 editButton.addEventListener("click", openProfilePopup);
 addButton.addEventListener("click", openAddCardPopup);
 popupProfileClose.addEventListener("click",()=> { 
@@ -136,7 +144,9 @@ popupPhotoClose.addEventListener("click",()=> {
   closePopup(popupPhoto);
 })
 
-//Form Submission Handlers
+/* -------------------------------------------------------------------------- */
+/*                          Form Submission Handlers                          */
+/* -------------------------------------------------------------------------- */
 popupFormProfile.addEventListener('submit', function(event) {
   event.preventDefault();
   handleProfileFormSubmit();
@@ -147,7 +157,9 @@ popupFormCard.addEventListener('submit', function(event) {
   handleAddCardFormSubmit();
 });
 
-//Adding Cards
+/* -------------------------------------------------------------------------- */
+/*                                Adding Cards                                */
+/* -------------------------------------------------------------------------- */
 function createCard(cardData) {
   const cardTemplate = document.querySelector("#cards-template").content;
   const cardElement = cardTemplate.cloneNode(true);
@@ -160,11 +172,11 @@ function createCard(cardData) {
   cardPhoto.src = cardData.link;
   cardPhoto.alt = cardData.alt;
   cardTitle.textContent = cardData.name;
-  //Like Button Listener
+  /* --------------------------- Internal Listeners --------------------------- */
   likeButton.addEventListener('click', () => {
     likeButton.classList.toggle('elements__button_active');
   })
-  //Delete Button Listener
+
   deleteButton.addEventListener('click', () => {
     card.remove();
   });
