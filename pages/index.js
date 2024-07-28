@@ -1,3 +1,10 @@
+/* -------------------------------------------------------------------------- */
+/*                                   Imports                                  */
+/* -------------------------------------------------------------------------- */
+import Card from "../components/Card.js";
+
+
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -30,6 +37,15 @@ const initialCards = [
     alt: "Lago",
   },
 ];
+
+const cardData = {
+  name: "Lago di Braies",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+  alt: "Lago",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getTemplate();
 
 /* -------------------------------------------------------------------------- */
 /*                              Profile Selectors                             */
@@ -161,7 +177,7 @@ popupFormCard.addEventListener('submit', function(event) {
 /*                                Adding Cards                                */
 /* -------------------------------------------------------------------------- */
 function createCard(cardData) {
-  const cardTemplate = document.querySelector("#cards-template").content;
+  const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
   const likeButton = cardElement.querySelector(".elements__button");
   const card = cardElement.querySelector('.elements__card');
@@ -173,13 +189,13 @@ function createCard(cardData) {
   cardPhoto.alt = cardData.alt;
   cardTitle.textContent = cardData.name;
   /* --------------------------- Internal Listeners --------------------------- */
-  likeButton.addEventListener('click', () => {
-    likeButton.classList.toggle('elements__button_active');
-  })
+  // likeButton.addEventListener('click', () => {
+  //   likeButton.classList.toggle('elements__button_active');
+  // })
 
-  deleteButton.addEventListener('click', () => {
-    card.remove();
-  });
+  // deleteButton.addEventListener('click', () => {
+  //   card.remove();
+  // });
   cardPhoto.addEventListener('click', () => {
     openPhotoPopup(cardData);
     });
