@@ -38,15 +38,6 @@ const initialCards = [
   },
 ];
 
-const cardData = {
-  name: "Lago di Braies",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  alt: "Lago",
-};
-
-const card = new Card(cardData, "#card-template");
-card.getTemplate();
-
 /* -------------------------------------------------------------------------- */
 /*                              Profile Selectors                             */
 /* -------------------------------------------------------------------------- */
@@ -56,7 +47,6 @@ const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 /* ---------------------------- Element Selectors --------------------------- */
 const elementsList = document.querySelector(".elements__list");
-const elementsCardPhoto = elementsList.querySelector(".elements__card-image");
 /* ----------------------------- Popup Selectors ---------------------------- */
 const popups = document.querySelectorAll(".popup");
 const popupProfile = document.querySelector(".popup-profile");
@@ -65,7 +55,6 @@ const popupProfileClose = popupProfile.querySelector(".popup__close");
 const popupCardClose = popupCard.querySelector(".popup__close");
 const popupFormProfile = document.querySelector(".popup__form_profile");
 const popupFormCard = document.querySelector(".popup__form_card");
-const popupButton = document.querySelector(".popup__button");
 const popupPhoto = document.querySelector(".popup-photo");
 const popupPhotoImage = popupPhoto.querySelector('.popup-photo__image');
 const popupPhotoClose = popupPhoto.querySelector(".popup-photo__button");
@@ -173,36 +162,11 @@ popupFormCard.addEventListener('submit', function(event) {
   handleAddCardFormSubmit();
 });
 
+
 /* -------------------------------------------------------------------------- */
-/*                                Adding Cards                                */
+/*                        Creating New Cards in Card.js                       */
 /* -------------------------------------------------------------------------- */
-function createCard(cardData) {
-  const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate.cloneNode(true);
-  const likeButton = cardElement.querySelector(".elements__button");
-  const card = cardElement.querySelector('.elements__card');
-  const deleteButton = card.querySelector('.elements__button_delete');
-  const cardPhoto = card.querySelector(".elements__card-image");
-  const cardTitle = card.querySelector(".elements__title");
-
-  cardPhoto.src = cardData.link;
-  cardPhoto.alt = cardData.alt;
-  cardTitle.textContent = cardData.name;
-  /* --------------------------- Internal Listeners --------------------------- */
-  // likeButton.addEventListener('click', () => {
-  //   likeButton.classList.toggle('elements__button_active');
-  // })
-
-  // deleteButton.addEventListener('click', () => {
-  //   card.remove();
-  // });
-  cardPhoto.addEventListener('click', () => {
-    openPhotoPopup(cardData);
-    });
-    return cardElement;
-}
-
 initialCards.forEach((cardData) => {
-  const createCardElement = createCard(cardData);
-  elementsList.append(createCardElement)
+  const card = new Card(cardData, "#card-template", openPhotoPopup); //openPhotoPopup()
+  elementsList.append(card.getTemplate())
 });
