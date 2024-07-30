@@ -52,24 +52,19 @@ const popupProfile = document.querySelector(".popup-profile");
 const popupCard = document.querySelector(".popup-card");
 const popupProfileClose = popupProfile.querySelector(".popup__close");
 const popupCardClose = popupCard.querySelector(".popup__close");
-const popupFormProfile = document.querySelector(".popup__form_profile");
-const popupFormCard = document.querySelector(".popup__form_card");
+const profileForm = document.forms["profile-form"];
+const cardForm = document.forms["card-form"];
 const popupPhoto = document.querySelector(".popup-photo");
 const popupPhotoImage = popupPhoto.querySelector(".popup-photo__image");
 const popupPhotoClose = popupPhoto.querySelector(".popup-photo__button");
-const cardFormButton = popupFormCard.querySelector(".popup_button");
-const popupFormProfileName = popupFormProfile.querySelector(
+const popupFormProfileName = profileForm.querySelector(
   ".popup__input_type_name"
 );
-const popupFormProfileDescription = popupFormProfile.querySelector(
+const popupFormProfileDescription = profileForm.querySelector(
   ".popup__input_type_description"
 );
-const popupCardFormPlace = popupFormCard.querySelector(
-  ".popup__input_type_place"
-);
-const popupCardFormImage = popupFormCard.querySelector(
-  ".popup__input_type_image"
-);
+const popupCardFormPlace = cardForm.querySelector(".popup__input_type_place");
+const popupCardFormImage = cardForm.querySelector(".popup__input_type_image");
 const popupTitle = popupPhoto.querySelector(".popup-photo__title");
 
 /* -------------------------------------------------------------------------- */
@@ -134,13 +129,12 @@ function handleProfileFormSubmit(event) {
 }
 
 function handleAddCardFormSubmit(event) {
-  const newCard = {
+  const cardData = {
     name: popupCardFormPlace.value,
     link: popupCardFormImage.value,
     alt: popupCardFormPlace.value,
   };
-  const newCardElement = new Card(newCard, "#card-template", openPhotoPopup);
-  elementsList.prepend(newCardElement.getTemplate());
+  renderCard(cardData, "prepend");
   closePopup(popupCard);
   addFormValidator.resetForm();
   addFormValidator.disableSubmitButton();
@@ -164,12 +158,12 @@ popupPhotoClose.addEventListener("click", () => {
 /* -------------------------------------------------------------------------- */
 /*                          Form Submission Handlers                          */
 /* -------------------------------------------------------------------------- */
-popupFormProfile.addEventListener("submit", function (event) {
+profileForm.addEventListener("submit", function (event) {
   event.preventDefault();
   handleProfileFormSubmit();
 });
 
-popupFormCard.addEventListener("submit", function (event) {
+cardForm.addEventListener("submit", function (event) {
   event.preventDefault();
   handleAddCardFormSubmit();
 });
@@ -178,9 +172,18 @@ popupFormCard.addEventListener("submit", function (event) {
 /*                        Creating New Cards in Card.js                       */
 /* -------------------------------------------------------------------------- */
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#card-template", openPhotoPopup); //openPhotoPopup()
-  elementsList.append(card.getTemplate());
+  renderCard(cardData, "append");
 });
+
+function createCard(cardData) {
+  const cardElement = new Card(cardData, "#card-template", openPhotoPopup);
+  return cardElement.getTemplate();
+}
+
+function renderCard(item, method) {
+  const cardElement = createCard(item);
+  elementsList[method](cardElement);
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */
@@ -193,11 +196,11 @@ const formValidationConfig = {
   errorClass: "popup__error_visible",
 };
 
-const addFormValidator = new FormValidator(formValidationConfig, popupFormCard);
+const addFormValidator = new FormValidator(formValidationConfig, cardForm);
 addFormValidator.enableValidation();
 
 const profileFormValidator = new FormValidator(
   formValidationConfig,
-  popupFormProfile
+  profileForm
 );
 profileFormValidator.enableValidation();
