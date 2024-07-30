@@ -78,7 +78,7 @@
               maxlength="200"
               name="second-input"
               class="popup__input_type_description popup__input"
-              id="owner-description" 
+              id="owner-description"
               placeholder="Description"
             />
             <div class="popup__error_container">
@@ -117,19 +117,24 @@
             <div class="popup__error_container">
               <span class="popup__error" id="new-url-error"></span>
             </div>
-            <button class="popup__button popup__button_disabled" type="submit" disabled>Create</button>
+            <button
+              class="popup__button popup__button_disabled"
+              type="submit"
+              disabled
+            >
+              Create
+            </button>
           </form>
         </div>
       </div>
       <div class="popup popup-photo popup_hidden">
         <div class="popup-photo__container">
           <button class="popup-photo__button popup__close"></button>
-          <img src="" alt="" class="popup-photo__image">
+          <img src="" alt="" class="popup-photo__image" />
           <p class="popup-photo__title"></p>
         </div>
       </div>
     </div>
     <script type="module" src="./pages/index.js"></script>
-    <script src="./components/FormValidator.js"></script>
   </body>
 </html>
