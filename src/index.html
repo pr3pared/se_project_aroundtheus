@@ -10,7 +10,6 @@
       content="photos, social, upload, art, nature, photography"
     />
     <title>Around the US</title>
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
@@ -18,13 +17,21 @@
       <!-- HEADER SECTION  -->
       <header class="header">
         <div class="header__content">
-          <img src="./images/logo.svg" alt="Site Logo" class="header__logo" />
+          <img
+            src="<%=require('./images/logo.svg')%>"
+            alt="Site Logo"
+            class="header__logo"
+          />
         </div>
       </header>
       <main class="page__content">
         <!-- PROFILE SECTION -->
         <section class="profile">
-          <img src="./images/Avatar.png" alt="Avatar" class="profile__avatar" />
+          <img
+            src="<%=require('./images/Avatar.png')%>"
+            alt="Avatar"
+            class="profile__avatar"
+          />
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button class="profile__edit-button" type="button"></button>
@@ -135,6 +142,5 @@
         </div>
       </div>
     </div>
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
