@@ -10,7 +10,9 @@ class PopupWithImage extends Popup {
       ".popup-photo__title"
     );
   }
-
+  /* -------------------------------------------------------------------------- */
+  /*                               Public Methods                               */
+  /* -------------------------------------------------------------------------- */
   open({ name, link }) {
     this._imageElement.src = link;
     this._imageElement.alt = name;

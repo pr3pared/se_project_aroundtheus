@@ -72,9 +72,12 @@ const userInfo = new UserInfo({
 /* -------------------------------------------------------------------------- */
 /*                               Popup Handling                               */
 /* -------------------------------------------------------------------------- */
+
+/* ------------------------------- Image Popup ------------------------------ */
 const imagePopup = new PopupWithImage(".popup-photo");
 imagePopup.setEventListeners();
 
+/* ------------------------------- Card Popup ------------------------------- */
 const newCardPopup = new PopupWithForm(".popup-card", () => {
   const cardData = {
     name: popupCardFormPlace.value,
@@ -92,6 +95,8 @@ const newCardPopup = new PopupWithForm(".popup-card", () => {
   addFormValidator.disableSubmitButton();
 });
 newCardPopup.setEventListeners();
+
+/* ------------------------------ Profile Popup ----------------------------- */
 const newProfilePopup = new PopupWithForm(".popup-profile", (formValues) => {
   userInfo.setUserInfo({
     name: formValues["first-input"],
@@ -102,7 +107,7 @@ const newProfilePopup = new PopupWithForm(".popup-profile", (formValues) => {
 newProfilePopup.setEventListeners();
 
 /* -------------------------------------------------------------------------- */
-/*                         Opening and Closing Popups Event Listeners                        */
+/*                         Opening and Closing Popups Event Listeners         */
 /* -------------------------------------------------------------------------- */
 editButton.addEventListener("click", () => {
   const { name, description } = userInfo.getUserInfo();
