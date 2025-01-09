@@ -46,16 +46,20 @@ const imagePopup = new PopupWithImage(".popup-photo");
 imagePopup.setEventListeners();
 
 /* ------------------------------- Card Popup ------------------------------- */
-const newCardPopup = new PopupWithForm(".popup-card", () => {
-  const cardData = {
-    name: popupCardFormPlace.value,
-    link: popupCardFormImage.value,
-    alt: popupCardFormPlace.value,
-  };
-  const card = new Card(cardData, "#card-template", (data) =>
+function createCard(item) {
+  const card = new Card(item, "#card-template", (data) =>
     imagePopup.open(data)
   );
-  const newCard = card.getTemplate();
+  return card.getTemplate();
+}
+
+const newCardPopup = new PopupWithForm(".popup-card", (formValues) => {
+  const cardData = {
+    name: formValues["first-input"],
+    link: formValues["second-input"],
+    alt: formValues["first-input"],
+  };
+  const newCard = createCard(cardData);
 
   section.addItem(newCard, "prepend");
   newCardPopup.close();
@@ -95,9 +99,7 @@ const section = new Section(
   {
     items: initialCards,
     renderer: (cardData, method = "append") => {
-      const addNewCard = new Card(cardData, "#card-template", (data) =>
-        imagePopup.open(data)
-      ).getTemplate();
+      const addNewCard = createCard(cardData);
       section.addItem(addNewCard, method);
     },
   },
