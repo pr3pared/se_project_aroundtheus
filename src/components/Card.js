@@ -1,6 +1,5 @@
 export default class Card {
   constructor(data, cardSelector, handleImageClick) {
-    console.log("handleImageClik", handleImageClick);
     this.name = data.name;
     this.link = data.link;
     this.alt = data.alt;
