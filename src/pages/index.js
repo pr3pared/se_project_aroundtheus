@@ -7,6 +7,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import { formValidationConfig, initialCards } from "../utils/constants.js";
 import "../pages/index.css";
 
@@ -28,6 +29,18 @@ const popupFormProfileDescription = profileForm.querySelector(
 );
 const popupCardFormPlace = cardForm.querySelector(".popup__input_type_place");
 const popupCardFormImage = cardForm.querySelector(".popup__input_type_image");
+
+/* -------------------------------------------------------------------------- */
+/*                              API INITILIZATION                             */
+/* -------------------------------------------------------------------------- */
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "8f859fc3-b526-4829-9aaa-ebed97a768c1",
+    "Content-Type": "application/json",
+  },
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                  UserInfo                                  */
@@ -97,7 +110,7 @@ addButton.addEventListener("click", () => {
 
 const section = new Section(
   {
-    items: initialCards,
+    items: [],
     renderer: (cardData, method = "append") => {
       const addNewCard = createCard(cardData);
       section.addItem(addNewCard, method);
@@ -105,7 +118,16 @@ const section = new Section(
   },
   elementsList
 );
-section.renderItems();
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    section.setItems(cards);
+    section.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 /* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */
