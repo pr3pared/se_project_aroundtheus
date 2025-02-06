@@ -29,6 +29,7 @@ export default class FormValidator {
   }
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
+      console.log(inputElement);
       return this._showInputError(inputElement);
     }
     this._hideInputError(inputElement);

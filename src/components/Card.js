@@ -1,10 +1,14 @@
 export default class Card {
-  constructor(data, cardSelector, handleImageClick) {
+  constructor(data, cardSelector, handleImageClick, handleDeleteCard, handleLikeButton) {
     this.name = data.name;
     this.link = data.link;
     this.alt = data.alt;
+    this._id = data._id;
+    this.isLiked = data.isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteCard = handleDeleteCard;
+    this._handleLikeButton = handleLikeButton;
   }
   /* -------------------------------------------------------------------------- */
   /*                               Private Methods                              */
@@ -17,10 +21,10 @@ export default class Card {
     );
 
     this._likeButton.addEventListener("click", () => {
-      this._handleLikeIcon();
+      this._handleLikeButton(this);
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteCard();
+      this._handleDeleteCard(this); // pass the card as an argument (i.e., the this object)
     });
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick({
@@ -31,11 +35,11 @@ export default class Card {
   }
 
   /* ----------------------------- Button Handlers ---------------------------- */
-  _handleLikeIcon() {
+  handleLikeIcon() {
     this._likeButton.classList.toggle("elements__button_active");
   }
 
-  _handleDeleteCard() {
+  _handleRemoveCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }

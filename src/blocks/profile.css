@@ -10,6 +10,32 @@
     height: 120px;
     width: 120px;
     background-color: #000;
+    border-radius: 120px;
+    z-index: 1;
+    position: relative;
+}
+
+.profile__avatar-container {
+    position: relative;
+}
+
+.profile__avatar-button {
+    left: 0;
+    height: 120px;
+    width: 120px;
+    border-radius: 120px;
+    background-image: url(../images/AvatarPencil.svg);
+    background-color: rgba(0, 0, 0, 0.8);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    z-index: 100;
+    opacity: 0;
+    border: none;
+}
+
+.profile__avatar-button:hover {
+    opacity: 1;
 }
 
 .profile__info {

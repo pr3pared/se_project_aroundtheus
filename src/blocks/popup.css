@@ -1,4 +1,4 @@
-.popup-card, .popup-photo, .popup-profile {
+.popup-card, .popup-photo, .popup-profile, .popup-avatar, .popup-confirm {
     position: fixed;
     display: flex;
     align-items: center;
@@ -101,13 +101,14 @@
     margin-bottom: 24px;
 }
 
-.popup__form_profile, .popup__form_card {
+.popup__form_profile, .popup__form_card, .popup__form_avatar .popup-confirm{
     display: flex;
     flex-direction: column;
     text-align: left;
 }
 
 .popup__input_type_name, .popup__input_type_description, .popup__input_type_place, .popup__input_type_image {
+    width: 100%;
     padding: 0 0 13px 0;
     margin: 30px 0 0 0;
     border: none;
@@ -139,6 +140,7 @@
 }
 
 .popup__button {
+    width: 100%;
     padding: 0;
     margin: 48px 0 0 0;
     background-color: #000;
