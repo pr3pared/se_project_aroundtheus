@@ -9,7 +9,6 @@ class PopupWithSubmit extends Popup {
   /* ----------------------------- Private Methods ---------------------------- */
 
   _submitForm(event) {
-    console.log("submit form");
     event.preventDefault();
     this._handleFormSubmit();
   }

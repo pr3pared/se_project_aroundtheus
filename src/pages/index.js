@@ -47,18 +47,34 @@ const api = new Api({
   },
 });
 
+const section = new Section(
+  {
+    items: [],
+    renderer: (cardData, method = "append") => {
+      const addNewCard = createCard(cardData);
+      section.addItem(addNewCard, method);
+    },
+  },
+  elementsList
+);
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards])=> {
+    userInfo.setUserInfo({
+      name: userData.name,
+      description: userData.about,
+      avatar: userData.avatar,
+    });
+    section.setItems(initialCards);
+    section.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 /* -------------------------------------------------------------------------- */
 /*                                  UserInfo                                  */
 /* -------------------------------------------------------------------------- */
-
-api.getUserInfo().then((userData) => {
-  console.log(userData);
-  userInfo.setUserInfo({
-    name: userData.name,
-    description: userData.about,
-    avatar: userData.avatar,
-  });
-});
 
 const userInfo = new UserInfo({
   profileNameSelector: ".profile__name",
@@ -78,7 +94,6 @@ imagePopup.setEventListeners();
 
 function handleDeleteCard(card) {
   confirmationPopup.open(card);
-  console.log(card);
   confirmationPopup.setSubmitAction(() => {
     api
       .deleteCard(card._id)
@@ -93,7 +108,6 @@ function handleDeleteCard(card) {
 }
 
 function handleLikeButton(card) {
-  console.log(card);
   if(!card.isLiked) {
     api.likeCard(card._id)
      .then(() => {
@@ -131,7 +145,7 @@ const newCardPopup = new PopupWithForm(".popup-card", (formValues) => {
     link: formValues["second-input"],
     alt: formValues["first-input"],
   };
-
+  const cardPopupButton = newCardPopup._submitButton;
   api
     .addCard(cardData)
     .then((cardData) => {
@@ -143,22 +157,17 @@ const newCardPopup = new PopupWithForm(".popup-card", (formValues) => {
       // card creation here
     })
     .catch((err) => {
+      cardPopupButton.textContent = "ERROR";
       console.error(err);
+    })
+    .finally(() => {
+      cardPopupButton.textContent = "Save";
     });
+  cardPopupButton.textContent = "Saving...";
 });
 newCardPopup.setEventListeners();
 
 const confirmationPopup = new PopupWithSubmit(".popup-confirm");
-
-// (cardId) => {
-//   console.log("delete card");
-//   console.log(cardId);
-//   api
-//     .deleteCard(cardId)
-//     .then((cardId) => {})
-//     .catch((err) => {
-//       console.error(err);
-//     });
 
 confirmationPopup.setEventListeners();
 
@@ -188,51 +197,30 @@ newProfilePopup.setEventListeners();
 
 /* ------------------------------ Avatar Popup ------------------------------ */
 
-
-
-
-
-/* ------------------------ THIS IS WHERE I LIEFT OFF ----------------------- */
-/* ------------------------ THIS IS WHERE I LIEFT OFF ----------------------- */
-/* ------------------------ THIS IS WHERE I LIEFT OFF ----------------------- */
-/* ------------------------ THIS IS WHERE I LIEFT OFF ----------------------- */
-/* ------------------------ THIS IS WHERE I LIEFT OFF ----------------------- */
-/* ------------------------ THIS IS WHERE I LIEFT OFF ----------------------- */
-/* -------------------- HANDLING CHANGE IN AVATAR BUTTON -------------------- */
-
-function handleAvatarSave(formValues) {
-  popupButtonText.textContent = "Saving...";
-  console.log(popupButtonText.textContent);
+const avatarPopup = new PopupWithForm(".popup-avatar", (formValues) => {
+  const avatarButtonText = avatarPopup._submitButton;
+  avatarButtonText.textContent = "Saving...";
   api
     .updateAvatar({
       avatar: formValues["first-input"],
     })
-    .then((avatarData) => {
-      console.log(avatarData);
-      userInfo.setUserInfo({ avatar: avatarData });
+    .then((userData) => {
+      userInfo.setUserInfo({ avatar: userData.avatar });
     })
     .catch((err) => {
-      popupButtonText.textContent = "ERROR";
+      avatarButtonText.textContent = "ERROR";
       console.error(err);
     })
     .finally(() => {
-      popupButtonText.textContent = "Save";
+      avatarButtonText.textContent = "Save";
       avatarPopup.close();
     });
-}
-
-
-
-const avatarPopup = new PopupWithForm(".popup-avatar", handleAvatarSave);
+});
 
 avatarButton.addEventListener("click", () => {
   avatarPopup.open();
 });
 avatarPopup.setEventListeners();
-
-function likeHandler() {
-  console.log("like");
-}
 
 /* -------------------------------------------------------------------------- */
 /*                         Opening and Closing Popups Event Listeners         */
@@ -250,31 +238,6 @@ addButton.addEventListener("click", () => {
 // deleteButton.addEventListener("click", () => {
 //   confirmationPopup.open();
 // });
-
-/* -------------------------------------------------------------------------- */
-/*                        Creating New Cards in Card.js                       */
-/* -------------------------------------------------------------------------- */
-
-const section = new Section(
-  {
-    items: [],
-    renderer: (cardData, method = "append") => {
-      const addNewCard = createCard(cardData);
-      section.addItem(addNewCard, method);
-    },
-  },
-  elementsList
-);
-
-api
-  .getInitialCards()
-  .then((cards) => {
-    section.setItems(cards);
-    section.renderItems();
-  })
-  .catch((err) => {
-    console.error(err);
-  });
 
 /* -------------------------------------------------------------------------- */
 /*                                 Validation                                 */

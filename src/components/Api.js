@@ -64,14 +64,14 @@ export default class Api {
 
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      mehtod: "PUT",
+      method: "PUT",
       headers: this._headers,
     }).then(this._resChecker);
   }
 
   unlikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      mehtod: "DELETE",
+      method: "DELETE",
       headers: this._headers,
     }).then(this._resChecker);
   }

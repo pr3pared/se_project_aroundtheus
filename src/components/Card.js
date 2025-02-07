@@ -36,9 +36,13 @@ export default class Card {
 
   /* ----------------------------- Button Handlers ---------------------------- */
   handleLikeIcon() {
-    this._likeButton.classList.toggle("elements__button_active");
+    if(this.isLiked) {
+      this._likeButton.classList.add("elements__button_active");
+    }else {
+      this._likeButton.classList.remove("elements__button_active");
+    }
   }
-
+ 
   _handleRemoveCard() {
     this._cardElement.remove();
     this._cardElement = null;
@@ -58,11 +62,15 @@ export default class Card {
     this._cardImageEl = this._cardElement.querySelector(
       ".elements__card-image"
     );
+    this._likeButton = this._cardElement.querySelector(".elements__button");
 
     /* ---------------------------- Set Card Details ---------------------------- */
     this._cardTitle.textContent = this.name;
     this._cardImageEl.src = this.link;
     this._cardImageEl.alt = this.alt;
+    if(this.isLiked) {
+      this._likeButton.classList.add("elements__button_active");
+    }
     /* ------------------------ Set Cards Event Listeners ----------------------- */
     this._setEventListeners();
 
