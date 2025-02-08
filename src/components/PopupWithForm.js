@@ -7,6 +7,7 @@ class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this.inputs = this._popupForm.querySelectorAll("input");
     this._submitButton = this._popupForm.querySelector('.popup__button');
+    this._submitButtonText = "Save";
   }
 
   /* -------------------------------------------------------------------------- */
@@ -23,12 +24,24 @@ class PopupWithForm extends Popup {
   _submitForm(event) {
     event.preventDefault();
     this._handleFormSubmit(this._getInputValues());
-    this._popupForm.reset();
   }
 
   /* -------------------------------------------------------------------------- */
   /*                               Public Methods                               */
   /* -------------------------------------------------------------------------- */
+
+  renderLoading(isLoading, loadingText='Saving...') {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+	// here we return back the initial text. So, you don’t need to bother yourself about it
+      this._submitButton.textContent = this._submitButtonText;
+    }
+  }
+
+  getForm() {
+    return this._popupForm;
+  }
 
   setEventListeners() {
     super.setEventListeners();
