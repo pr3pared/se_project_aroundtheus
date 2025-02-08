@@ -7,6 +7,11 @@ export default class Section {
   /* -------------------------------------------------------------------------- */
   /*                               Public Methods                               */
   /* -------------------------------------------------------------------------- */
+
+  setItems(items) {
+    this._items = items;
+  }
+
   renderItems() {
     this._items.forEach((cardData) => {
       this._renderer(cardData, "append");
